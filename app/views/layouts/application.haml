@@ -1,0 +1,30 @@
+!!! Strict
+%html
+  %head
+    %title= [@title, "Forecast Pusher"].compact.join(" | ")
+    != stylesheet_tag 'application'
+    != javascript_tag 'application'
+  %body
+    =render_partial 'common/navbar'
+
+    .flash-container
+      -if flash[:alert]
+        .alert
+          %span= flash[:alert]
+      -elsif flash[:notice]
+        .alert.alert-info
+          %span= flash[:notice]
+
+    .container
+      %h1
+        Forecast Pusher
+
+      #main
+        %section
+          = yield
+
+      #sns
+        =render_partial 'common/sns'
+
+      #footer
+        =render_partial 'common/footer'

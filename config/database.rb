@@ -14,21 +14,35 @@
 #   }
 #
 ActiveRecord::Base.configurations[:development] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 'forecast_pusher_development.db')
-
+  :adapter   => 'mysql2',
+  :encoding  => 'utf8',
+  :reconnect => true,
+  :database  => 'forecast_pusher_dev',
+  :pool      => 5,
+  :username  => ENV['DEV_DB_USERNAME'] || 'rails',
+  :password  => ENV['DEV_DB_PASSWORD'] || '',
+  :host      => 'localhost'
 }
 
 ActiveRecord::Base.configurations[:production] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 'forecast_pusher_production.db')
-
+  :adapter   => 'mysql2',
+  :encoding  => 'utf8',
+  :reconnect => true,
+  :database  => ENV['DB_NAME'],
+  :pool      => 5,
+  :username  => ENV['DB_USERNAME'],
+  :password  => ENV['DB_PASSWORD'],
+  :host      => ENV['DB_HOST']
 }
 
 ActiveRecord::Base.configurations[:test] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 'forecast_pusher_test.db')
-
+  :adapter   => 'mysql2',
+  :encoding  => 'utf8',
+  :reconnect => true,
+  :database  => 'forecast_pusher_test',
+  :pool      => 5,
+  :username  => 'rails',
+  :host      => 'localhost'
 }
 
 # Setup our logger

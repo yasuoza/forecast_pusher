@@ -1,0 +1,34 @@
+-# Encoding:utf-8
+
+-@title = "Mypage"
+
+%h3
+  現在登録されている地点
+
+-if current_user.has_point?
+  %p#registered
+    =current_user.point.pref_name
+    \:
+    =current_user.point.area_name
+
+  =button_to 'init', url_for(:users, :init), method: :delete, confirm: "登録解除します。よろしいですか?" do
+    %button#init.btn.btn-danger
+      登録解除
+
+-else
+
+  %p#not-registered
+    現在登録されている地点はありません
+
+%section
+  %h3
+    退会
+  %p
+    退会を希望される場合は退会ボタンを押して退会して下さい。
+
+  =button_to 'destroy', url_for(:users, :destroy), method: :delete, confirm: "退会します。よろしいですか?" do
+    %button#destroy.btn.btn-inverse
+      退会
+
+.space10
+  &nbsp;

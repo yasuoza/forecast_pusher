@@ -1,0 +1,12 @@
+%a.hatena-bookmark-button{href: 'http://b.hatena.ne.jp/entry/http://forecast.yasuoza.com/',
+                          data:{ 'hatena-bookmark-title' => 'ForecastPusher',
+                                 'hatena-bookmark-layout' => 'standard' }}
+  %img{src: 'http://b.st-hatena.com/images/entry-button/button-only.gif', width: 20, height: 20, style: 'border: none'}
+  <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+%a.twitter-share-button{"data-url" => "http://forecast.yasuoza.com/", :href => "https://twitter.com/share"}
+  Tweet
+:javascript
+  !function(d, s, id){var js, fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js, fjs);}}(document, "script", "twitter-wjs");
+
+%iframe{:allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fforecast.yasuoza.com%2F&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&appId=279485218773209", :style => "border:none; overflow:hidden; width:100px; height:21px;"}

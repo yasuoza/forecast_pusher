@@ -1,0 +1,13 @@
+-form_tag url_for(:users, :register), method: 'post', id: 'registration' do
+  %select#prefs{name: "pref_id"}
+    -@prefs.map do |pref|
+      %option{value: pref.pref_id,
+              selected: ('selected' if pref.pref_id == current_user.pref_id)}
+        =pref.pref_name
+
+  %select#areas{name: "area_id", data:{registered: current_user.area_id}}
+
+  -# %input{name: 'next_info', type: 'checkbox', checked: ('checked' if current_user.next_info)}
+  -# Recieve tomorrow's forecast
+
+  %button.btn.btn-primary register

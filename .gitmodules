@@ -1,0 +1,4 @@
+[submodule "tasks/data"]
+  path = tasks/data
+  url = https://github.com/yasuoza/forecast_scraper.git
+  ignore = dirty

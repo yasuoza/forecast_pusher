@@ -1,0 +1,28 @@
+.navbar.navbar-fixed-top.navbar-inverse
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{data: {toggle: 'collapse', target: '.nav-collapse'}}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      %a.brand{href: url_for(:index)}
+        ForecastPusher
+      .nav-collapse
+        %ul.nav
+          %li#about
+            %a{href: '/about'}
+              About
+          -if user_signed_in?
+            %li#mypage
+              %a{href: url_for(:mypage, :index)}
+                Mypage
+        %ul.nav.pull-right
+          -if user_signed_in?
+            %li
+              %a{href: "http://twitter.com/#!/#{current_user.screen_name}", target: '_blank'}
+                =current_user.name
+                (Twitter)
+            %li
+              %a{href: url_for(:logout), data: {method: :delete}}
+                logout

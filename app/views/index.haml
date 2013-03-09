@@ -1,0 +1,20 @@
+
+-content_for :include do
+  = javascript_include_tag('register_form')
+
+
+-if user_signed_in?
+
+  =render_partial 'partials/register_form'
+
+-else
+
+  %h2
+    Welcome to ForecastPusher!
+
+  #login-with-twitter
+    = link_to '/auth/twitter' do
+      %img{src: image_path('sign-in-with-twitter.png')}
+
+.space30
+  &nbsp;

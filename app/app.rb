@@ -1,17 +1,53 @@
 class ForecastPusher < Padrino::Application
-  register SassInitializer
+  register OmniauthInitializer
   use ActiveRecord::ConnectionAdapters::ConnectionManagement
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers
+  register Padrino::Cache
+  register PadrinoSprocekts unless Padrino.env == :production
+  helpers Sprockets::Helpers
 
-  enable :sessions
+  get :index do
+    @prefs = Point.where(area_id: nil)
+
+    render 'index'
+  end
+
+  get :about do
+    @about_content = cache('about_content') {
+      render_partial 'partials/about_content'
+    }.force_encoding('utf-8')
+    render 'about'
+  end
+
+  delete :logout, csrf_protection: false do
+    session[:current_user] = nil
+    redirect url(:index)
+  end
+
+  not_found do
+    send_file Padrino.root('public', '404.html'), status: 404
+  end
+
+  private
+    def current_user
+      @current_user ||= session[:current_user]
+    end
+
+    def user_signed_in?
+      !current_user.nil?
+    end
+
+    def authenticate_user!
+      unless user_signed_in?
+        redirect url(:index)
+      end
+    end
 
   ##
   # Caching support
   #
-  # register Padrino::Cache
-  # enable :caching
   #
   # You can customize caching store engines:
   #
