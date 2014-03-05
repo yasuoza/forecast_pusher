@@ -21,6 +21,8 @@ gem 'activerecord', :require => "active_record"
 gem 'mysql2'
 gem 'twitter'
 
+gem 'dotenv'
+
 # Padrino Stable Gem
 gem 'padrino', '~> 0.11.0'
 
